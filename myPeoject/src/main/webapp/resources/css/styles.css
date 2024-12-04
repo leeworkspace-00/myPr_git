@@ -1,0 +1,211 @@
+@charset "UTF-8";
+/* styles.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5efe3;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-size: 24px;
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.feature {
+  border-radius: 8px;
+  padding: 15px;
+  max-width: calc(50% - 20px);
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  justify-content: space-between; /* 이미지와 텍스트를 양쪽 끝에 배치 */ /* 전체 가로 중앙 정렬 */
+}
+
+.feature:nth-child(odd) {
+	flex-direction: row;
+  align-self: flex-start; /* 왼쪽 정렬 */
+}
+
+.feature:nth-child(even) {
+	 flex-direction: row-reverse;
+  align-self: flex-end; /* 오른쪽 정렬 */
+}
+
+.feature h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+
+.feature p {
+  font-size: 16px;
+}
+.feature .text {
+  display: flex;
+  flex-direction: column; /* 텍스트를 세로로 정렬 */
+ justify-content: space-between;  /* 텍스트 영역의 세로 중앙 정렬 */
+
+  width: 100%; /* 텍스트 영역 크기 설정 */
+}
+
+.feature img {
+  width: 40%; /* 이미지 크기 확대 */
+  height: auto; /* 비율 유지 */
+  border-radius: 8px; /* 둥근 모서리 */
+}
+
+footer {
+  position: fixed; /* 화면에 고정 */
+  bottom: 20px; /* 화면 하단에서 20px 위로 */
+  right: 20px; /* 화면 오른쪽에서 20px 안쪽으로 */
+}
+
+footer button {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+}
+
+
+.pricing {
+  text-align: center;
+}
+
+.pricing h2 {
+  font-size: 22px;
+}
+
+.feetable {
+  font-size: 18px; /* 글자 크기 */
+
+
+
+  padding: 20px; /* 내부 여백 */
+  margin: 20px auto; /* 상하 간격 및 가운데 정렬 */
+
+  max-width: 400px; /* 최대 너비 설정 */
+
+}
+
+.feetable h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+    border-bottom: solid #ddd; /* 하단 경계선 */
+  
+}
+
+.price-list {
+  list-style-type: none; /* 리스트 스타일 제거 */
+  padding: 0;
+}
+
+.price-list li {
+  margin-bottom: 10px; /* 항목 간 간격 */
+}
+
+
+
+
+.main-button {
+	position: absolute;
+  	top: 20px;
+  	right: 20px;
+   	padding :10px ;       /* 버튼 크기 조정 (패딩 증가)*/
+    font-size :14px ;   /* 글자 크기 증가*/
+    background-color: #c7b199;
+    color:white ;
+    cursor:pointer ;
+    border:none ;
+    border-radius :5px ; 
+}
+
+.main-button:hover {
+  background-color:#333 ;
+      color :white;
+}
+
+
+
+.footer-button button {
+ padding :10px ;       /* 버튼 크기 조정 (패딩 증가)*/
+      font-size :14px ;   /* 글자 크기 증가*/
+      background-color: #c7b199;
+      color:white ;
+      cursor:pointer ;
+      border:none ;
+      border-radius :5px ; 
+}
+
+.footer-button button:hover {
+  background-color:#333 ;
+      color :white;
+}
+
+
+.feetable h3 {
+  text-align: center;
+}
+
+.price-list {
+  list-style-type: none;
+
+}
+
+.price-list li {
+  margin-bottom: 10px;
+  border-bottom: solid #ddd;
+}
+
+/* 추가 안내 섹션 */
+.extra-fee {
+	
+  margin-top: 30px;
+}
+
+.extra-fee h3 {
+	
+   text-align: center;
+}
+
+/* Grid 레이아웃 */
+.fee-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(200px, auto));
+  gap: 20px; /* 항목 간 간격 */
+}
+
+.fee-item {
+border-bottom: solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.fee-item h4 {
+  margin-bottom: .5em;
+}

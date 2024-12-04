@@ -1,0 +1,94 @@
+@charset "UTF-8";
+/* 기본 스타일 초기화 */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+  }
+
+  section {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  h2 {
+    text-align: center;
+    color: #343a40;
+    margin-bottom: 20px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle; /* 텍스트를 세로 중앙에 배치 */
+  }
+
+  th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    color: #495057;
+    width: 30%;
+  }
+
+  td {
+    color: #343a40;
+    width: 70%;
+  }
+
+  /* 버튼 스타일 */
+  .btn-container {
+    text-align: center; /* 버튼들을 가운데 정렬 */
+    margin-top: 20px; /* 버튼과 테이블 사이 간격 */
+  }
+
+  .btn-container input[type="button"] {
+    background-color: #007bff; /* 파란색 배경 */
+    color: white; /* 흰색 텍스트 */
+    border: none; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    margin-right: 10px; /* 버튼 간의 간격 */
+    transition: background-color .3s ease; /* 호버 시 부드러운 색상 변화 */
+  }
+
+  .btn-container input[type="button"]:hover {
+      background-color: #0056b3; /* 호버 시 더 진한 파란색 */
+      transition-duration : .3s ease-out;
+      }
+      .main-button {
+	position: absolute;
+  	top: 20px;
+  	right: 20px;
+   	padding :10px ;       /* 버튼 크기 조정 (패딩 증가)*/
+    font-size :14px ;   /* 글자 크기 증가*/
+    background-color: #c7b199;
+    color:white ;
+    cursor:pointer ;
+    border:none ;
+    border-radius :5px ; 
+}
+
+.main-button:hover {
+  background-color:#333 ;
+      color :white;
+}
+      

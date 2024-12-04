@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myaws.myapp.persistence.BoardMapper">   
+
+<!--  글목록보여주는 쿼리 작성 -->
+    <sql id = "search">
+    
+    	<if test="searchType != null and searchType.equals('writer')">
+    		and writer like concat('%',#{keyword},'%')
+    	</if>  
+    	
+    	
+    	<if test="searchType != null and searchType.equals('subject')">
+    		and subject like concat('%',#{keyword},'%')
+    	</if>      
+    	
+    
+    </sql>
+    <!-- 조회수기능 쿼리문 -->
+    <update id="viewCntUpdate" parameterType = "int">
+    	UPDATE board SET viewcnt = viewcnt+1 where bidx = #{bidx}
+    </update>
+    <!-- 글하나만 가져오는 기능 쿼리문 -->
+    <select id ="selectOne" parameterType="int" resultType="bv">
+  		SELECT * FROM board where delyn='N' AND bidx = #{bidx}
+  	</select>
+    
+    
+
+<!-- 예약목록 +페이징 -->
+<!-- 예약 정보 입력 -->
+	<insert id = "reservationInsert" parameterType = "bv">
+			INSERT INTO board(midx, subject, writer, petname, phone, addr, useday, servicekind, boardkind, petborder, request) VALUES(#{midx},#{subject}, #{writer}, #{petname}, #{phone}, #{addr}, #{useday}, #{servicekind}, #{boardkind}, #{petborder}, #{request})
+	</insert>
+<!-- 목록보여주기 페이징 -->	
+    <select id = "reservationSelectAll" parameterType="HashMap" resultType="bv">	
+  		SELECT * FROM board where delyn='N' and boardkind='B'		
+  	<include refid = "search"/> 		
+  		ORDER BY originbidx desc, depth asc, bidx desc limit #{startPageNum}, #{perPageNum} 		
+  	</select>
+  
+  	<select id ="reservationTotalCount" parameterType="scri" resultType="int" >
+  		SELECT count(*) as cnt FROM board where delyn='N' and boardkind='B'	
+ 		<include refid = "search"/>
+  	</select>
+  	
+	<!-- 예약내용 + 조회수 ? 필요할까? -->
+	<select id ="reservationSelectOne" parameterType="int" resultType="bv">
+  		SELECT * FROM board where delyn='N' AND bidx = #{bidx}
+  	</select>
+  	
+  	<update id="reservationViewCntUpdate" parameterType = "int">
+    	UPDATE board SET viewcnt = viewcnt+1 where bidx = #{bidx}
+    </update>
+    
+    
+    <!-- ================================================================= -->
+    	<!-- 문의글쓰기 -->
+	<insert id ="askInsert" parameterType = "bv">
+		INSERT INTO board(subject, contents, writer, pwd, filename, boardkind, midx) VALUES(#{subject}, #{contents}, #{writer}, #{pwd}, #{filename}, #{boardkind}, #{midx})
+	</insert>
+    <!-- 문의목록+페이지 -->
+    
+    <select id = "askSelectAll" parameterType="HashMap" resultType="bv">	
+  		SELECT * FROM board where delyn='N' and boardkind='A'
+		<include refid = "search"/>
+  		ORDER BY originbidx desc, depth asc, bidx desc limit #{startPageNum}, #{perPageNum} 		
+  	</select>
+  	  	
+  	<select id ="askTotalCount" parameterType="scri" resultType="int" >
+  		SELECT count(*) as cnt FROM board where delyn='N' and boardkind='A'	
+ 		<include refid = "search"/>
+  	</select>
+  	<!-- ================================================================= -->
+    <!-- 등업목록+페이지 -->    
+        <select id = "levelupSelectAll" parameterType="HashMap" resultType="bv">	
+  		SELECT * FROM board where delyn='N' and boardkind='L'
+ 		
+  		<include refid = "search"/>
+  		
+  		ORDER BY originbidx desc, depth asc, bidx desc limit #{startPageNum}, #{perPageNum} 		
+  	</select>
+  	  	
+  	<select id ="levelupTotalCount" parameterType="scri" resultType="int" >
+  		SELECT count(*) as cnt FROM board where delyn='N' and boardkind='L'	
+ 		<include refid = "search"/>
+  	</select>
+  	
+  	<!-- ================================================================= -->
+ 
+    
+
+
+<!-- =============리뷰 쿼리문================== -->
+    
+	<insert id ="reviewInsert" parameterType = "bv">
+		<selectKey keyProperty = "bidx" resultType="int" order = "AFTER">
+			select max(bidx) as bidx from board	 	
+  		</selectKey>
+  		INSERT INTO board(originbidx, depth, level,subject, contents, star, writer, pwd, filename, boardkind, midx) VALUES(null,0,0,#{subject}, #{contents}, #{star}, #{writer}, #{pwd}, #{uploadedFilename}, #{boardkind}, #{midx})
+	</insert>
+	
+  	<update id="boardOriginbidxUpdate" parameterType="int">
+  		update board set originbidx = #{bidx} where bidx = #{bidx}
+  	</update>
+	
+	
+	
+
+	<select id ="reviewSelectOne" parameterType="int" resultType="bv">
+  		SELECT * FROM board where delyn='N' AND bidx = #{bidx}
+  	</select>
+  	  	<update id="reviewViewCntUpdate" parameterType = "int">
+    	UPDATE board SET viewcnt = viewcnt + 1 where bidx = #{bidx}
+    </update>
+        <!-- 리뷰목록+페이지 -->
+        <select id = "reviewSelectAll" parameterType="HashMap" resultType="bv">	
+  		SELECT * FROM board where delyn='N' and boardkind='R'
+ 		
+  		<include refid = "search"/>
+  		
+  		ORDER BY originbidx desc, depth asc, bidx desc limit #{startPageNum}, #{perPageNum} 		
+  	</select>
+  	  	
+  	<select id ="reviewTotalCount" parameterType="scri" resultType="int" >
+  		SELECT count(*) as cnt FROM board where delyn='N' and boardkind='R'	
+ 		<include refid = "search"/>
+  	</select>   
+
+
+	<select id ="askSelectOne" parameterType="int" resultType="bv">
+  		SELECT * FROM board where delyn='N' AND bidx = #{bidx}
+  	</select>
+  	
+  	<select id ="levelupSelectOne" parameterType="int" resultType="bv">
+  		SELECT * FROM board where delyn='N' AND bidx = #{bidx}
+  	</select>
+
+
+</mapper>

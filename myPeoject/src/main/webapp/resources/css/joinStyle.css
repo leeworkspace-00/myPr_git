@@ -1,0 +1,148 @@
+@charset "UTF-8";
+ /* 기본 스타일 초기화 */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* body에 Flexbox 적용하여 페이지를 중앙에 배치 */
+  body {
+    display: flex;
+    flex-direction: column; /* 요소들을 세로로 정렬 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    height: 100vh; /* 화면 전체 높이 사용 */
+    font-family: Arial, sans-serif;
+    background-color: #f5efe3;
+    padding: 20px;
+  } 
+
+ header {
+    width: 100%; /* 헤더가 페이지 전체 너비를 차지하도록 설정 */
+    text-align: center; /* 헤더 텍스트를 가운데 정렬 */
+    margin-bottom: 20px; /* 헤더 아래 여백 추가 */
+  }
+  h3 {
+    color: #343a40;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  section {
+    max-width: 800px; /* 페이지 너비 제한 */
+    width: 100%;
+    background-color: #fff; /* 흰색 배경 */
+    padding: 20px; /* 내부 여백 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    text-align: center; /* 섹션 내 텍스트 중앙 정렬 */
+  }
+
+  table {
+    width: 100%; 
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    text-align: center; /* 테이블 내 모든 텍스트 중앙 정렬 */
+  }
+
+  th, td {
+    padding: 12px;
+    vertical-align: middle; /* 텍스트를 세로 중앙에 배치 */
+    font-size: 16px; /* 글자 크기 설정 */
+    text-align: center; /* 셀 내 텍스트 중앙 정렬 */
+  }
+
+  th {
+    background-color: #f8f9fa; /* 연한 배경색 */
+    font-weight: bold;
+    color: #495057; /* 진한 텍스트 색상 */
+    width: 30%;
+    border-bottom: solid #ddd; /* 하단 경계선 */
+    
+}
+
+td input[type="text"], td input[type="password"], td input[type="email"] {
+      width: calc(100% - 50px); /* 입력 필드 너비를 테이블 셀에 맞춤 */
+      padding: 10px; /* 입력 필드 내부 여백 */
+      border-radius: 5px; /* 모서리 둥글게 */
+      border: solid #ddd; /* 테두리 색상 */
+      font-size :14 px ;
+      position: relative; /* 상대 위치 설정 (버튼과 함께 사용) */
+      
+}
+
+/* 아이디 입력 칸과 중복 체크 버튼을 한 줄에 배치하기 위한 스타일 */
+/* .id-check-container {
+      position: relative; 부모 요소를 기준으로 절대 위치 설정 가능하게 함
+      background-color: #c7b199;
+}
+
+.id-check-container input[type="text"] {
+      width: calc(100% - 80px); 버튼의 크기를 고려해 입력 필드 너비 조정 (버튼이 차지할 공간 제외)
+} */
+
+/* .id-check-container button {
+
+      position:absolute ; 절대 위치 설정으로 오른쪽에 고정
+      right :5px ;        오른쪽에 붙임 (약간의 여백 추가)
+      top :50% ;          수직 중앙 정렬
+      transform :translateY(-50%) ; 수직 중앙 정렬 보정
+      padding :5px ;       버튼 크기 축소를 위한 패딩 조정
+      font-size :12px ;   글자 크기 축소
+      background-color: #c7b199;
+      color:white ;
+      cursor:pointer ;
+      border:none ;
+      border-radius :5px ;
+     
+} */
+/* 
+.btn button {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #c7b199; 버튼 배경색
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover  {
+  background-color: #9f8473; 호버 시 버튼 색상 변경
+}
+ */
+    /* Buttons */
+.btn{
+      width: 45%;
+      padding: 12px;
+      margin-top: 10px;
+      margin-right: auto; 
+      margin-left:auto;
+      background-color: #c7b199;
+      color:white ;
+       border:none ;
+      }
+.btn:hover {
+	 background-color:#333 ;
+      color :white;
+	
+}
+.main-button {
+	position: absolute;
+  	top: 20px;
+  	right: 20px;
+   	padding :10px ;       /* 버튼 크기 조정 (패딩 증가)*/
+    font-size :14px ;   /* 글자 크기 증가*/
+    background-color: #c7b199;
+    color:white ;
+    cursor:pointer ;
+    border:none ;
+    border-radius :5px ; 
+}
+
+.main-button:hover {
+  background-color:#333 ;
+      color :white;
+}
+

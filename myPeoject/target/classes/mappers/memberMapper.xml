@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myaws.myapp.persistence.MemberMapper">
+
+	<select id = "memberSelectAll" resultType="mv">		<!-- resultType="mv" >> 여러개 담기  하나를 담아도 mv로 담아오자 -->   
+  		SELECT * FROM member WHERE delyn = 'N' ORDER BY midx desc <!-- 삭제되지 않은 회원 정보 모두 가져오기 -->
+    </select>
+
+    <insert id="memberInsert" parameterType="com.myaws.myapp.domain.MemberVo">
+		insert into member(memberid,memberpwd,membername,memberbirth,memberemail,memberphone,memberaddr,membergender,memberkind) 
+		values(#{memberid},#{memberpwd},#{membername},#{memberbirth},#{memberemail},#{memberphone},#{memberaddr},#{membergender},#{memberkind})		
+	</insert>
+	<select id = "memberLoginCheck" parameterType = "String" resultType = "mv">
+		SELECT * from member where memberid = #{memberid}
+    </select>
+    
+    
+    	<select id ="myPageShow" parameterType="int" resultType="mv">
+  		SELECT * FROM member where AND midx = #{midx}
+  	</select>
+    
+</mapper>
