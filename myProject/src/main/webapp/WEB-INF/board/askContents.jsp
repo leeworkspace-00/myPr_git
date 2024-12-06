@@ -54,6 +54,36 @@ function download_() {
 }
 $(document).ready(function(){
 	//  시작하자마자 동작해야함 페이지 들어오자마자 댓글 있는거 보여줘야함
+	
+
+    // 서버에서 관리자인지 확인하는 AJAX 요청
+    $.ajax({
+        url: '${pageContext.request.contextPath}/member/adminCheck.aws',  // 서버에서 관리자인지 확인하는 엔드포인트
+        method: 'GET',       // GET 요청으로 확인
+        success: function(response) {
+            var midx = response.midx;  // 서버에서 'isAdmin' 값을 받아옴
+            
+
+            // 관리자가 아니라면, 다른 페이지로 리다이렉트 (예: 로그인 페이지나 접근 거부 페이지)
+            if (midx!=112) {
+                alert("관리자만 이 페이지에 접근할 수 있습니다.");
+                window.location.href = "${pageContext.request.contextPath}/member/memberLogin.aws";  // 접근 거부 페이지로 리다이렉트
+            }
+
+            // 관리자인 경우에는 아무것도 하지 않음 (페이지 계속 로드됨)
+        },
+        error: function() {
+            // AJAX 요청 실패 시, 접근 거부 처리
+            alert("관리자 권한을 확인할 수 없습니다.");
+            window.location.href = "${pageContext.request.contextPath}/board/askList.aws";  // 접근 거부 페이지로 리다이렉트
+        }
+    });
+
+
+	
+	
+	
+
 
 $("#dUrl").html(getOriginalFileName("${bv.filename}"));	
 	// 실제 파일이름 보여주는 j쿼리
@@ -73,13 +103,19 @@ return;
 
 
 	<article class="detailContents">
-		<h2 class="contentTitle"> 제목 : <%=bv.getSubject()%>
+		<h2 class="contentTitle"> 제목 : <%=bv.getSubject()%></h2>
+		
 
-		</h2>
 
 		<p class="write"> 작성자 : <%=bv.getWriter()%>
-			<p>작성일 : (<%=bv.getWriteday()%>)</p>
-		</p>
+			<p>작성일시 : (<%=bv.getWriteday()%>)</p>
+						<% if (bv.getModifyday() == null || bv.getModifyday().equals("") ) {}else{ %>	
+			<p>수정일 : (<%=bv.getModifyday()%>)</p>
+
+			<%} %>
+			
+			
+		
 		<hr>
 		<div class="content">
 
@@ -137,8 +173,8 @@ return;
 
 	<div class="btnBox">
 		<a class="btn aBtn"	href="<%=request.getContextPath()%>/board/boardReply.aws?bidx=<%=bv.getBidx()%>">답변</a>
-		<a class="btn aBtn"	href="<%=request.getContextPath()%>/board/boardDelete.aws?bidx=<%=bv.getBidx()%>">삭제</a>
-		<a class="btn aBtn"	href="<%=request.getContextPath()%>/board/reviewModify.aws?bidx=<%=bv.getBidx()%>">수정</a>	
+		<a class="btn aBtn"	href="<%=request.getContextPath()%>/board/askDelete.aws?bidx=<%=bv.getBidx()%>">삭제</a>
+		<a class="btn aBtn"	href="<%=request.getContextPath()%>/board/askModify.aws?bidx=<%=bv.getBidx()%>">수정</a>	
 		<a class="btn aBtn" href="<%=request.getContextPath()%>/board/askList.aws">목록</a>
 	</div>
 

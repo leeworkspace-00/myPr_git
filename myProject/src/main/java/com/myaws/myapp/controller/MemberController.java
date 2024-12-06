@@ -1,6 +1,9 @@
 package com.myaws.myapp.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.json.simple.JSONObject;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,8 +13,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,13 +36,12 @@ public class MemberController { // 컨트롤러 용도의 객체를 생성해달
 
 	@Autowired
 	private MemberService memberService;
-	
+
 	@Autowired(required = false) // 주입해주기
 	private BCryptPasswordEncoder bCryptPasswordEncoder; // 암호화
 
 	@Autowired
 	SqlSession sqlSession;
-
 
 	@RequestMapping(value = "memberList.aws", method = RequestMethod.GET)
 	public String memberList(Model model) {
@@ -47,28 +51,38 @@ public class MemberController { // 컨트롤러 용도의 객체를 생성해달
 
 		return "WEB-INF/member/memberList";
 	}
-	@RequestMapping(value = "memberJoin.aws", method = RequestMethod.GET) 
-		public String memberJoin() {
+
+	@RequestMapping(value = "memberJoin.aws", method = RequestMethod.GET)
+	public String memberJoin() {
 		return "WEB-INF/member/memberJoin";
 
 	}
-	@RequestMapping(value = "memberLogin.aws", method = RequestMethod.GET) 
+
+	@RequestMapping(value = "memberLogin.aws", method = RequestMethod.GET)
 	public String memberLogin() {
-	return "WEB-INF/member/memberLogin";
+		return "WEB-INF/member/memberLogin";
 	}
-	@RequestMapping(value = "mainPage.aws", method = RequestMethod.GET) 
-		public String mainPage() {
+
+	@RequestMapping(value = "mainPage.aws", method = RequestMethod.GET)
+	public String mainPage() {
 		return "WEB-INF/member/mainPage";
 
 	}
-	@RequestMapping(value = "profilePage.aws", method = RequestMethod.GET) 
+
+	@RequestMapping(value = "myPage.aws", method = RequestMethod.GET)
+	public String myPage() {
+		return "WEB-INF/member/myPage";
+
+	}
+
+	@RequestMapping(value = "profilePage.aws", method = RequestMethod.GET)
 	public String profilePage() {
-	return "WEB-INF/member/profilePage";
+		return "WEB-INF/member/profilePage";
 	}
 
 	@ResponseBody // 결과값은 객체로 보낸다는 의미의 어노테이션
 	@RequestMapping(value = "memberIdCheck.aws", method = RequestMethod.POST) // 아이디 중복 체크 동작 메서드 구현
-	public JSONObject JSONObject(@RequestParam("memberId") String memberId) { 
+	public JSONObject JSONObject(@RequestParam("memberId") String memberId) {
 		int cnt = memberService.memberIdCheck(memberId);
 		JSONObject obj = new JSONObject();
 		obj.put("cnt", cnt);
@@ -77,17 +91,15 @@ public class MemberController { // 컨트롤러 용도의 객체를 생성해달
 
 	@RequestMapping(value = "memberLoginAction.aws", method = RequestMethod.POST)
 	public String memberLoginAction(@RequestParam("memberid") String memberid,
-	                                @RequestParam("memberpwd") String memberpwd,
-	                                RedirectAttributes rttr,
-	                                HttpSession session) {
+			@RequestParam("memberpwd") String memberpwd, RedirectAttributes rttr, HttpSession session) {
 
-	    MemberVo mv = memberService.memberLoginCheck(memberid);
-	    String path = ""; // path 초기화
+		MemberVo mv = memberService.memberLoginCheck(memberid);
+		String path = ""; // path 초기화
 
-	    if (mv != null) { // 객체값이 널이 아니면 => mv 에 뭐라도 담았으면
-	        String reservedPwd = mv.getMemberpwd(); // 저장된 비밀번호 가져오기
-	        if (memberpwd.equals(reservedPwd)) { // 암호화 해줬던 암호랑 가져온 비밀번호랑 같은지 매칭시켜보고 맞으면
-	        	 //if (bCryptPasswordEncoder.matches(memberpwd, reservedPwd))
+		if (mv != null) { // 객체값이 널이 아니면 => mv 에 뭐라도 담았으면
+			String reservedPwd = mv.getMemberpwd(); // 저장된 비밀번호 가져오기
+			if (memberpwd.equals(reservedPwd)) { // 암호화 해줬던 암호랑 가져온 비밀번호랑 같은지 매칭시켜보고 맞으면
+				// if (bCryptPasswordEncoder.matches(memberpwd, reservedPwd))
 				rttr.addAttribute("midx", mv.getMidx());
 				rttr.addAttribute("memberId", mv.getMemberid());
 				rttr.addAttribute("memberName", mv.getMembername());
@@ -101,32 +113,25 @@ public class MemberController { // 컨트롤러 용도의 객체를 생성해달
 					path = "redirect:/member/mainPage.aws";
 
 				}
-	        } else { // null이면 ==> 잘못된 결과면 다시 로그인 페이지로 이동한다
+			} else { // null이면 ==> 잘못된 결과면 다시 로그인 페이지로 이동한다
 
-				
-				  
-				 
 				rttr.addFlashAttribute("msg", "아이디/비밀번호를 확인해주세요"); // 한번 사용하고 없어질 세션. 값을 사용한 후에 지워버림
 				path = "redirect:/member/memberLogin.aws";
 
 			}
 
 		} else {
-			
-			  
-			 
+
 			rttr.addFlashAttribute("msg", "해당하는 아이디가 없습니다");
 			path = "redirect:/member/memberLogin.aws";
 		}
 		return path; // path 값 리턴
 	}
 
-	      
-	
 	// 회원가입 동작 매핑하기
 	@RequestMapping(value = "memberJoinAction.aws", method = RequestMethod.POST)
 	public String memberJoinAction(MemberVo mv) {
-		
+
 		/*
 		 * String memberpwd_enc = bCryptPasswordEncoder.encode(mv.getMemberpwd());
 		 * mv.setMemberpwd(memberpwd_enc);
@@ -141,19 +146,35 @@ public class MemberController { // 컨트롤러 용도의 객체를 생성해달
 		}
 		return path;
 	}
-		@RequestMapping(value = "memberLogout.aws", method = RequestMethod.GET) // 로그아웃 동작 HttpSession session 매개변수
-		public String memberLogout(HttpSession session) {
-			// logger.info("memberLogout 들어옴");
 
-			session.removeAttribute("midx");
-			session.removeAttribute("memberId");
-			session.removeAttribute("memberName");
-			session.invalidate(); // 세션값 완전 초기화 = 초기화 되면 세션값이 없으므로 로그아웃되는것
+	@RequestMapping(value = "memberLogout.aws", method = RequestMethod.GET) // 로그아웃 동작 HttpSession session 매개변수
+	public String memberLogout(HttpSession session) {
+		// logger.info("memberLogout 들어옴");
 
-			return "redirect:/member/mainPage.aws";
-		}
-		
-		
+		session.removeAttribute("midx");
+		session.removeAttribute("memberId");
+		session.removeAttribute("memberName");
+		session.invalidate(); // 세션값 완전 초기화 = 초기화 되면 세션값이 없으므로 로그아웃되는것
+
+		return "redirect:/member/mainPage.aws";
+	}
 	
+	@RequestMapping(value = "adminCheck.aws", method = RequestMethod.GET)
+	public String checkAdmin(HttpSession session, @RequestParam("midx") int midx,HttpServletRequest request) {
+	    // 세션에서 사용자 정보 가져오기 (세션을 통해 로그인된 사용자 정보 확인)
+	    int midx_int = Integer.parseInt(request.getSession().getAttribute("midx").toString()); 
+
+	    // 관리자인지 확인하는 로직
+	    if (midx_int != 112) {
+	        // 관리자가 아니라면 접근 거부, 로그인 페이지로 리다이렉트
+	        return "redirect:/member/memberLogin";  // 로그인 페이지로 리다이렉트
+	    }
+	    
+	    // 관리자인 경우에는 계속 페이지를 진행
+	    return "redirect:/board/askContents.aws";  // 요청한 페이지로 리다이렉트
+	}
 	
+
+
+
 }

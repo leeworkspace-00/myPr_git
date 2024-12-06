@@ -11,7 +11,7 @@ body { width: 100%; margin: 0 auto; background-color:#f5efe3;   font-family: Ari
   gap : 20px;
   border: none;}
 a { text-decoration: none; color: inherit; }
-select { cursor: pointer; border-color: lightgray; height: 20px; width: 70px; }
+select { cursor: pointer; border-color: lightgray; height: 20px; width: 70px; left:30px; }
 textarea { border-color: lightgray; padding: 0 5px; }
 input { border: 1px solid lightgray; padding: 0 5px; }
 input[type="file"] { border: none; padding: 0; }
@@ -30,7 +30,7 @@ header {
   width: 100%;
 }
 header .mainTitle { font-size: 15px; padding: 10px 50px 5px; }
-header .search { text-align: right; margin-bottom: 10px; }
+header .search {  margin-bottom: 10px;}
 /* 로고 스타일 */
 .logo {
   font-size: 24px;
@@ -69,7 +69,8 @@ table th, table td { padding: 5px 10px; }
 
 /* button */
 .btn { background-color: #c7b199;; color: white; border-radius: 3px; border: none; width: 50px; height: 20px; 
-	cursor: pointer; display: inline-block; vertical-align: middle; }
+	cursor: pointer; display: inline-block; vertical-align: middle; position: relative;
+    right: 5px;}
 .aBtn {	text-align: center; line-height: 20px; }
 
 .btnBox { text-align:right; margin-top: 10px; }
@@ -91,7 +92,7 @@ table th, table td { padding: 5px 10px; }
 .commentContents form[name="frm"] { margin-bottom: 40px; }
 .commentContents .commentWriter { border: 1px solid lightgray; display: inline-block; padding: 0 100px; }
 .commentContents input { width: 600px; height: 25px; float: left; }
-.commentContents .replyBtn { background: #555; width: 188px; float: left; border: none; cursor: pointer;
+.commentContents .replyBtn { background-color: #c7b199; width: 188px; float: left; border: none; cursor: pointer;
 	color: white; height: 27px; }
 	
 	
@@ -165,4 +166,20 @@ label:hover ~ label {
 .main-button:hover {
   background-color:#333 ;
       color :white;
+}
+
+.searchBtn {
+
+  	top: 20px;
+  	right: 20px;
+   	padding :8px ;       /* 버튼 크기 조정 (패딩 증가)*/
+    font-size :14px ;   /* 글자 크기 증가*/
+    background-color: #c7b199;
+    color:white ;
+    cursor:pointer ;
+    border:none ;
+    border-radius :5px ; 
+	
+	
+	
 }

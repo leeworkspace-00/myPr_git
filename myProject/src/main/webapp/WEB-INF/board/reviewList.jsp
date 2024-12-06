@@ -29,11 +29,14 @@
 </script>
 </head>
  <link href="../resources/css/boardStyle.css" rel="stylesheet">
-<button onclick="location.href='<%=request.getContextPath() %>/member/mainPage.aws'" class="main-button">Main</button>
+
 <body>
 <header>
 
-	<h2 class = "mainTitle">REVIEW</h2>
+	<h2>
+		<a href = "<%=request.getContextPath() %>/member/mainPage.aws" class = "mainTitle">리뷰게시판
+		</a>
+	</h2>
 	<form class="search">
 		<select name = "searchType">
 			<option value="subject">제목</option>

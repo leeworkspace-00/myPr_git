@@ -4,7 +4,7 @@
     <%@ page import="com.myaws.myapp.domain.*" %>  
     <%@ taglib prefix = "c" uri ="http://java.sun.com/jsp/jstl/core"%>	    
     
-<%-- <%
+<%
 String msg= "";
 
 if (request.getAttribute("msg") != null){
@@ -15,7 +15,7 @@ if (msg !=""){
 	 }
 %>
     
-     --%>
+
      
      <%
  BoardVo bv  = (BoardVo)request.getAttribute("bv"); 
@@ -26,7 +26,7 @@ if (msg !=""){
 <html>
 <head>
 <meta charset="UTF-8">
-<title>글삭제</title>
+<title>리뷰글삭제하기</title>
 <link href="/resources/css/boardStyle.css" rel="stylesheet">
 
 <script>
@@ -42,7 +42,7 @@ function DeleteBtn() {
 	
 	let ans=confirm("삭제하시겠습니까?");	// 함수의 값을 참과 거짓 true false로 나눈다 
 	if(ans==true) {
-		fm.action="${pageContext.request.contextPath}/board/boardDeleteAction.aws";
+		fm.action="${pageContext.request.contextPath}/board/reviewDeleteAction.aws";
 		fm.method="post";
 		fm.submit();
 	}
@@ -62,7 +62,6 @@ function DeleteBtn() {
 <form name="frm">
 <input type = "text" name = "bidx" value = "${bidx}">
 <input type = "text" name = "midx" value = "${midx}">
-<input type = "text" name = "boardkind" value = "${boardkind}">
 
 	<table class = "writeTable">
 		<tr>

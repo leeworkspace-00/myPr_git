@@ -4,6 +4,8 @@
  <%@ taglib prefix = "c" uri ="http://java.sun.com/jsp/jstl/core"%>		<!-- jstl을 사용하겠다는 선언 어노테이션으로 -->    
 <%
  BoardVo bv  = (BoardVo)request.getAttribute("bv"); 
+
+
  %>   
 
     
@@ -36,6 +38,10 @@
 			fm.pwd.focus();
 			return;
 		}
+		if (fm.midx.value != 112) {
+	        alert("관리자만 답변을 작성할 수 있습니다.");
+	        return;
+	    }
 		let ans = confirm("답변을 남기시겠습니까?");
 		  
 		  if (ans == true) {
@@ -57,12 +63,13 @@
 	</header>
 
 	<form name="frm">
-	<input type="text" name="bidx" value="${bv.bidx}">
-	<input type="text" name="originbidx" value="${bv.originbidx}">
-	<input type="text" name="depth" value="${bv.depth}">
-	<input type="text" name="level" value="${bv.level}">
-	<input type="text" name="midx" value="${midx}">
-	<input type="text" id="boardkind" name="boardkind" value="${bv.boardkind}">
+	<input type="hidden" name="bidx" value="${bv.bidx}">
+	<input type="hidden" name="originbidx" value="${bv.originbidx}">
+	<input type="hidden" name="depth" value="${bv.depth}">
+	<input type="hidden" name="level" value="${bv.level}">
+	<input type="hidden" name="midx" value="${midx}">
+	<input type="hidden" id="boardkind" name="boardkind" value="${bv.boardkind}">
+
 
 
 		<table class="writeTable">

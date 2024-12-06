@@ -27,11 +27,11 @@
 </header>
 
 <article class = "detailContents">
-	<h2 class = "contentTitle"><%=bv.getSubject() %> 
-
-	</h2>
+	<h2 class = "contentTitle">제목 : <%=bv.getSubject() %></h2>
 	
-	<p class="write"><%=bv.getWriter() %> (<%=bv.getWriteday() %>)</p>
+	<p class="write"> 작성자 : <%=bv.getWriter()%>
+
+
 	<hr>
 	<div class="content">
 	

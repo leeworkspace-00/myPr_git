@@ -17,7 +17,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>리뷰글수정</title>
+<title>글수정</title>
 <link href="../resources/css/boardStyle.css" rel="stylesheet">
 <script>
 	function modifyBtn()  {
@@ -42,7 +42,7 @@
 			}else {
 				let ans=confirm("수정하시겠습니까?");	// 함수의 값을 참과 거짓 true false로 나눈다 
 				if(ans==true) {
-					fm.action="<%=request.getContextPath()%>/board/reviewModifyAction.aws"; 
+					fm.action="<%=request.getContextPath()%>/board/boardModifyAction.aws"; 
 					fm.method="post";
 					fm.enctype="multipart/form-data";		// 문자를 넘길때 어떤 형태로 넘길건지 지정한다
 					//multipart = 이미지파일과 같은 여러형태의 파일 타입을 저장하고 업로드하고 다운로드 받을거임
@@ -61,7 +61,7 @@
 <body>
 
 <header>
-	<h2 class = "mainTitle">리뷰글수정하기</h2>
+	<h2 class = "mainTitle">글수정하기</h2>
 </header>
 
 <form name = "frm">
@@ -77,18 +77,6 @@
 	<th>내용</th> <!-- 테이블 헤드 표 첫줄들어가는 자리 -->
 	<td><textarea id = "contents" name="contents" rows="6" value = "<%=bv.getContents()%>"></textarea></td>
 </tr>
-<tr>
-	<th>별점을 선택해주세요</th>
-		<td>
-			<div class="star">
-				<input type="radio" name="star" value="5" id="rate1"><label for="rate1">★</label>
-				<input type="radio" name="star" value="4" id="rate2"><label for="rate2">★</label>
-				<input type="radio" name="star" value="3" id="rate3"><label for="rate3">★</label>
-				<input type="radio" name="star" value="2" id="rate4"><label for="rate4">★</label>
-		        <input type="radio" name="star" value="1" id="rate5"><label for="rate5">★</label>
-		    </div>
-		</td>
-</tr>	
 
 <tr>
 	<th>작성자</th> <!-- 테이블 헤드 표 첫줄들어가는 자리 -->

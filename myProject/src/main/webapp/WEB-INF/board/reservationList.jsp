@@ -28,21 +28,24 @@
 </script>
 </head>
  <link href="../resources/css/boardStyle.css" rel="stylesheet">
-<button onclick="location.href='<%=request.getContextPath() %>/member/mainPage.aws'" class="main-button">Main</button>
+
 
 
 
 <body>
 <header>
 
-	<h2 class = "mainTitle">예약신청 현황</h2>
+	<h2>
+		<a href = "<%=request.getContextPath() %>/member/mainPage.aws" class = "mainTitle">예약신청현황
+		</a>
+	</h2>
 	<form class="search">
 		<select name = "searchType">
 			<option value="subject">제목</option>
 			<option value="writer">작성자</option>
 		</select>
 		<input type="text" name="keyword">
-		<button  type="submit" class="btn">검색</button>
+		<button  type="submit" class = btn>검색</button>
 	</form>
 </header>
 <section>

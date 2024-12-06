@@ -13,6 +13,7 @@ public interface MemberService {
 	public MemberVo myPageShow(int midx);
 	
 	public int memberIdCheck(String memberId);
+
 	
 
 }

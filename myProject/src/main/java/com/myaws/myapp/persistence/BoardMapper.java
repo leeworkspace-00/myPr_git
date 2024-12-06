@@ -13,19 +13,19 @@ public interface BoardMapper {
 	 */
 	// 원글번호 업데이트 치는 메서드
 	public int boardOriginbidxUpdate(int bidx);
+
 	public int viewCntUpdate(int bidx);
-	
-	
-	  public BoardVo boardSelectOne(int bidx); 
-		/*
-		 * public ArrayList<BoardVo> boardSelectAll(HashMap<String, Object> hm); public
-		 * int boardTotalCount(searchCriteria scri); public int boardUpdate(BoardVo bv);
-		 * public int deleteAction(HashMap hm);
-		 * 
-		 */
-	
-	
+
+	public BoardVo boardSelectOne(int bidx);
+	/*
+	 * public ArrayList<BoardVo> boardSelectAll(HashMap<String, Object> hm); public
+	 * int boardTotalCount(searchCriteria scri); public int boardUpdate(BoardVo bv);
+	 * public int deleteAction(HashMap hm);
+	 * 
+	 */
+
 	public int reservationInsert(BoardVo bv);
+
 	public int levelupInsert(BoardVo bv);
 
 	public ArrayList<BoardVo> reservationSelectAll(HashMap<String, Object> hm);
@@ -35,7 +35,6 @@ public interface BoardMapper {
 	public BoardVo reservationSelectOne(int bidx);
 
 	// 조회수
-	public int reservationViewCntUpdate(int bidx);
 
 	public int reviewInsert(BoardVo bv);
 
@@ -52,32 +51,29 @@ public interface BoardMapper {
 	public ArrayList<BoardVo> reviewSelectAll(HashMap<String, Object> hm);
 
 	public int reviewTotalCount(searchCriteria scri);
-	//리뷰 내용 보여주기
+
+	// 리뷰 내용 보여주기
 	public BoardVo reviewSelectOne(int bidx);
 
-	// 조회수
-	public int reviewViewCntUpdate(int bidx);
-	
 	public int reviewUpdate(BoardVo bv);
-	
+
+	public int askUpdate(BoardVo bv);
 
 	// 문의사항 글쓰기
-	public int askInsert(BoardVo bv); 
+	public int askInsert(BoardVo bv);
+
 	public BoardVo askSelectOne(int bidx);
+
 	public BoardVo levelupSelectOne(int bidx);
-	
-	
-	
+
 	public int boardDeleteAction(HashMap<String, Object> hm);
-	
+
 	public BoardVo deleteSelectOne(int bidx);
-	
+
 	public int boardReplyUpdate(BoardVo bv);
+
 	public int boardReplyInsert(BoardVo bv);
-	
-	
+
 	public int boardRecomUpdate(BoardVo bv);
-	
-	
-	
+
 }

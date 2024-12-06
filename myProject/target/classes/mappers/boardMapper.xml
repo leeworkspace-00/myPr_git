@@ -159,9 +159,21 @@
 		update board set subject = #{subject}, writer = #{writer}, contents = #{contents}, star = #{star}, modifyday = now(), filename = #{uploadedFilename} where bidx = #{bidx} and pwd = #{pwd} and midx = #{midx}
 	</update>
 	
+	<update id="askUpdate" parameterType="bv">
+		update board set subject = #{subject}, writer = #{writer}, contents = #{contents}, modifyday = now(), filename = #{uploadedFilename} where bidx = #{bidx} and pwd = #{pwd} and midx = #{midx}
+	</update>
+	
+     <update id = "boardRecomUpdate" parameterType = "bv">
+     
+     	<selectKey keyProperty = "recom" resultType="int" order = "AFTER">
+			select recom from board where bidx = #{bidx}
+  		</selectKey>
+    	UPDATE board SET recom = recom+1 where bidx = #{bidx}
+    </update>  
+	
 	<!-- 삭제기능 -->
     <update id="boardDeleteAction" parameterType = "HashMap">
-    	update board set delyn = 'Y', modifyday = now() WHERE bidx = #{bidx} and midx = #{midx} and pwd= #{pwd}
+    	update board set delyn = 'Y', deleteday = now() WHERE bidx = #{bidx} and midx = #{midx} and pwd= #{pwd}
     </update>
     
 
@@ -175,12 +187,6 @@
     
     <!--  추천수 쿼리-->
     
-     <update id = "boardRecomUpdate" parameterType = "bv">
-     
-     	<selectKey keyProperty = "recom" resultType="int" order = "AFTER">
-			select recom from board where bidx = #{bidx}
-  		</selectKey>
-    	UPDATE board SET recom = recom+1 where bidx = #{bidx}
-    </update>    
+  
 
 </mapper>

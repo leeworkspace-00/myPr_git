@@ -212,13 +212,12 @@ $(document).ready(function(){
 		let cwriter = $("#cwriter").val();	// 작성자 데이터 담고 
 		let ccontents = $("#ccontents").val(); // 내용담아
 		
-		if(cwriter =="" ) {	// 내용이 없으면 
-			alert("작성자를 입력해주세요");
-			$("#cwriter").focus();		// 깜빡깜빡
+		if(cwriter =="" ) {	
+			alert("댓글기능은 회원만 가능합니다.");
 			return;
-		}	else if(ccontents=="") {		// 작성자가 없으면
+		}	else if(ccontents=="") {	
 			alert("내용을 입력해주세요");		
-			$("#ccontents").focus();		// 깜빡깜빡
+			$("#ccontents").focus();	
 			return;
 
 			
@@ -277,11 +276,11 @@ $(document).ready(function(){
 
 
 		</h2>
-
-		<p class="write"><%=bv.getWriter()%>
-		조회수 : <%=bv.getViewcnt() %>
-			(<%=bv.getWriteday()%>)
-		</p>
+		<p class="write"> 작성자 : <%=bv.getWriter()%>
+		<p> 작성일시 : <%=bv.getWriteday()%>
+		<% if (bv.getModifyday() == null || bv.getModifyday().equals("") ) {}else{ %>	
+		<p> 수정일 : <%=bv.getModifyday()%>
+	<%} %>
 		<hr>
 		<div class="content">
 
@@ -328,7 +327,7 @@ $(document).ready(function(){
 	<div class="btnBox">
 	
 		<a class="btn aBtn"	href="<%=request.getContextPath()%>/board/reviewModify.aws?bidx=<%=bv.getBidx()%>">수정</a>
-		<a class="btn aBtn"	href="<%=request.getContextPath()%>/board/boardDelete.aws?bidx=<%=bv.getBidx()%>">삭제</a>
+		<a class="btn aBtn"	href="<%=request.getContextPath()%>/board/reviewDelete.aws?bidx=<%=bv.getBidx()%>">삭제</a>
 		<a class="btn aBtn"	href="<%=request.getContextPath()%>/board/reviewList.aws">목록</a>
 	</div>
 	
@@ -340,7 +339,7 @@ $(document).ready(function(){
 		<input type="text" id="ccontents"  name="ccontents">
 		<button type="button" id="cmtBtn" class="replyBtn">댓글쓰기</button>
 	</form>
- <input type = "text" name = "cidx" value = "${cidx}">
+
  
 	
 	

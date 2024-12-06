@@ -23,5 +23,9 @@
   	<select id="memberIdCheck" parameterType = "String" resultType = "int">
 		SELECT COUNT(*) as cnt from member where memberid = #{memberid}
 	</select>
+	
+
+	
+	
     
 </mapper>

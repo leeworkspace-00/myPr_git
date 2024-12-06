@@ -32,11 +32,14 @@
 
 <header>
 
-	<h2 class = "mainTitle">시터신청게시판</h2>
+	<h2>
+		<a href = "<%=request.getContextPath() %>/member/mainPage.aws" class = "mainTitle">시터신청게시판
+		</a>
+	</h2>
 	<form class="search">
 		<select name = "searchType">
 			<option value="subject">제목</option>
-			<option value="writer">내용</option>
+			<option value="writer">작성자</option>
 			
 		</select>
 		<input type="text" name="keyword">
@@ -44,6 +47,7 @@
 	</form>
 </header>
 <body>
+
 <section>
 <table class="listTable">
 		<tr>

@@ -8,13 +8,12 @@ if(session.getAttribute("msg") != null) {
 session.setAttribute("msg", "");
 
 int midx = 0;
-String alt = "";
-String logMsg = "";
+
 boolean isLoggedIn = false;
 
 if (session.getAttribute("midx") == null) { 
-    alt = "로그인 하세요";
-    logMsg = "로그인";
+    
+    isLoggedIn = false;
 } else {
     isLoggedIn = true;
 }
@@ -54,18 +53,6 @@ if (session.getAttribute("midx") == null) {
     });
   </script>
   <link href="../resources/css/mainstyle.css" rel="stylesheet">
-<!--   <style>
-    .bottom-links {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-    }
-    .bottom-links a {
-      margin: 0 10px;
-      text-decoration: none;
-      color: #000;
-    }
-  </style> -->
 </head>
 <body>
 <header>
@@ -75,18 +62,16 @@ if (session.getAttribute("midx") == null) {
   <nav class="navbar">
     <ul>
       <% if (!isLoggedIn) { %>
-        <li><a href="<%=request.getContextPath() %>/member/memberJoin.aws">회원가입</a></li>
-        <li><a href="<%=request.getContextPath() %>/member/memberLogin.aws">로그인페이지</a></li>
+        <li><a href="<%=request.getContextPath() %>/member/memberJoin.aws">JOIN</a></li>
+        <li><a href="<%=request.getContextPath() %>/member/memberLogin.aws">LOGIN</a></li>
       <% } else { %>
-        <li><a href="<%=request.getContextPath() %>/member/myPage.aws">마이페이지</a></li>
-        <li><a href="<%=request.getContextPath() %>/member/memberLogout.aws">로그아웃</a></li>
+        <li><a href="<%=request.getContextPath() %>/member/myPage.aws">MYPAGE</a></li>
+        <li><a href="<%=request.getContextPath() %>/member/memberLogout.aws">LOGOUT</a></li>
       <% } %>
       <li><button class="category-btn" onclick="toggleChapters()">≡</button></li>
     </ul>
   </nav>
 </header>
-<%-- <a href="<%=request.getContextPath() %>/member/memberLogout.aws">로그아웃</a> --%>
-
 <section class="fold-section">
     <div class="fold-content">
         <h1>믿을 수 있는 펫시터 서비스</h1>
@@ -97,7 +82,7 @@ if (session.getAttribute("midx") == null) {
 </section>
 
 <div class="chapter-list" id="chapterList">
-  <div><h3>카테고리</h3></div>
+  <div><h3>CHAPTER</h3></div>
 
   <ul>
     <li><a href="<%=request.getContextPath() %>/board/reservationList.aws">예약목록</a></li>
@@ -106,18 +91,19 @@ if (session.getAttribute("midx") == null) {
     <li><a href="<%=request.getContextPath() %>/board/reviewList.aws">후기게시판</a></li>
     <li><a href="<%=request.getContextPath() %>/board/levelupWrite.aws">시터지원하러가기</a></li>
 	<li><a href="<%=request.getContextPath() %>/board/levelupList.aws">지원목록</a></li>
+	 </ul>
     <!-- Bottom Links for Login/Signup or My Page/Logout -->
     <div class="bottom-links">
       <% if (isLoggedIn) { %>
-        <a href="<%=request.getContextPath() %>/member/myPage.aws">마이페이지</a>
-        <a href="<%=request.getContextPath() %>/member/memberLogout.aws">로그아웃</a>
+        <a href="<%=request.getContextPath() %>/member/myPage.aws">MYPAGE</a>
+        <a href="<%=request.getContextPath() %>/member/memberLogout.aws">LOGOUT</a>
       <% } else { %>
-        <a href="<%=request.getContextPath() %>/member/memberLogin.aws">로그인페이지</a> 
-        <a href="<%=request.getContextPath() %>/member/memberJoin.aws">회원가입페이지</a> 
+        <a href="<%=request.getContextPath() %>/member/memberLogin.aws">LOGIN</a> 
+        <a href="<%=request.getContextPath() %>/member/memberJoin.aws">JOIN</a> 
       <% } %>
     </div>
 
-  </ul>
+ 
 </div>
 
 <div class="container">

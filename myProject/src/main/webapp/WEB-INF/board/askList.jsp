@@ -31,7 +31,10 @@
 <body>
 <header>
 
-	<h2 class = "mainTitle">Q&A</h2>
+	<h2>
+		<a href = "<%=request.getContextPath() %>/member/mainPage.aws" class = "mainTitle">Q&A
+		</a>
+	</h2>
 	<form class="search">
 		<select name = "searchType">
 			<option value="subject">제목</option>

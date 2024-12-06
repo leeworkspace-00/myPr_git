@@ -53,12 +53,21 @@
 		<interceptors>
 		<interceptor>
 			<mapping path="/member/memberList.aws"/> <!-- 회원 목록 보기 할때 -->
-			<mapping path="/board/reservationWrite.aws"/>
-			<mapping path="/board/levelupWrite.aws"/>
-			<mapping path="/board/levelupList.aws"/>
-			<mapping path="/board/reservationList.aws"/>
+			
+			<mapping path="/board/levelupWrite.aws"/> <!-- 시터등업할 때 로그인 필요 -->
+			<mapping path="/board/levelupList.aws"/> <!-- 등업신청 목록확인할 때 로그인 필요 -->
+			<mapping path="/board/levelupContents.aws"/> <!-- 내용보기할 때 로그인필요 -->
+			<mapping path="/board/reservationList.aws"/> <!-- 예약리스트보기 할때 로그인 필요 -->
+			<mapping path="/board/reservationContents.aws"/><!-- 예약내용보기 할때 로그인 필요 -->
+			<mapping path="/board/reservationWrite.aws"/> <!-- 예약신청서 작성할때 로그인 필요 -->
+			<mapping path="/board/askList.aws"/>
+			<mapping path="/board/askContents.aws"/>
 			<mapping path="/board/askWrite.aws"/>
+			<mapping path="/board/reviewWrite.aws"/>
+			
+			
 			<mapping path="/comment/commentWriteAction.aws"/>
+			
 			
 			
 			<!-- <mapping path="/board/boardWrite.aws"/>글쓰기 화면가기 전에 로그인 인증
