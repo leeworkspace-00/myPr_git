@@ -58,6 +58,7 @@ if (session.getAttribute("midx") == null) {
 <header>
   <div class="logo">
     <a href="<%=request.getContextPath() %>/member/mainPage.aws"><img src="../resources/images/cat&dogLogo.png"></a>
+    
   </div>
   <nav class="navbar">
     <ul>

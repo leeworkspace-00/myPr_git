@@ -47,5 +47,13 @@ public class MemberServiceImpl implements MemberService {
 		return value;  // 서비스에서 선언하면 impl에 자동으로 빨간줄 > 메서드 생성 해줌
 	}
 
+	@Override
+	public MemberVo adminLoginCheck(String memberId) {
+		MemberVo mv = mm.adminLoginCheck(memberId);		
+  		return mv;
+	}
+	
+
+
 
 }

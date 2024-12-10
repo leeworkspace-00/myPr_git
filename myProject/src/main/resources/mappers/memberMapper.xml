@@ -16,7 +16,7 @@
     </select>
     
     
-    	<select id ="myPageShow" parameterType="int" resultType="mv">
+    <select id ="myPageShow" parameterType="int" resultType="mv">
   		SELECT * FROM member where AND midx = #{midx}
   	</select>
   	
@@ -24,6 +24,9 @@
 		SELECT COUNT(*) as cnt from member where memberid = #{memberid}
 	</select>
 	
+	<select id="adminLoginCheck" parameterType="String" resultType="mv">
+    SELECT * FROM member WHERE memberid = #{memberid} AND memberkind = 'A'
+	</select>
 
 	
 	

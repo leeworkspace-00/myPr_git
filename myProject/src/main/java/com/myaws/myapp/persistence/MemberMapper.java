@@ -11,5 +11,8 @@ public interface MemberMapper {
 	public MemberVo myPageShow(int midx);
 	
 	public int memberIdCheck(String memberId);	
+	
+	public MemberVo adminLoginCheck(String memberId);
+
 
 }

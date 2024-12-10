@@ -90,11 +90,12 @@ table th, table td { padding: 5px 10px; }
 .detailContents .fileDown img { margin-right: 10px; }
 
 .commentContents form[name="frm"] { margin-bottom: 40px; }
-.commentContents .commentWriter { border: 1px solid lightgray; display: inline-block; padding: 0 100px; }
-.commentContents input { width: 600px; height: 25px; float: left; }
+.commentContents .commentWriter { border: 1px solid lightgray; display: inline-block; padding: 0 100px;}
+.commentContents input { width: 600px; height: 25px; float: left;}
 .commentContents .replyBtn { background-color: #c7b199; width: 188px; float: left; border: none; cursor: pointer;
 	color: white; height: 27px; }
 	
+
 	
 .star {
     display: inline-block;

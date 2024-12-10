@@ -210,6 +210,7 @@
 	        <artifactId>spring-aop</artifactId>
 	        <version>${org.springframework-version}</version>
  		</dependency>
+ 		
 		
 		
 		
@@ -260,6 +261,13 @@
                     <mainClass>org.test.int1.Main</mainClass>
                 </configuration>
             </plugin>
-        </plugins>
-    </build>
+            <!--  오류나면 여기 지워보기 플러그인 부분 -->
+       	    <plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-war-plugin</artifactId>
+	            <version>3.3.2</version> <!-- 최신 안정 버전 -->
+       		</plugin>
+       		<!--  여기 까지  -->
+    		</plugins>
+    </build>    
 </project>

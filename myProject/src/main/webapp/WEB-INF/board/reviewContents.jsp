@@ -334,7 +334,7 @@ $(document).ready(function(){
 <article class="commentContents">
 	<form name="frm">
 		<p class="commentWriter" style="width:100px;">
-		<input type="text" id="cwriter" name="cwriter" value="${memberName}" readonly="readonly" style="width:100px;border:0px;">
+		<input type="text" id="cwriter" name="cwriter" value="${memberName}" readonly="readonly" style="width:100px;border:0px;background-color:#f5efe3;">
 		</p>	
 		<input type="text" id="ccontents"  name="ccontents">
 		<button type="button" id="cmtBtn" class="replyBtn">댓글쓰기</button>

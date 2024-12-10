@@ -174,6 +174,54 @@ public class MemberController { // 컨트롤러 용도의 객체를 생성해달
 	    return "redirect:/board/askContents.aws";  // 요청한 페이지로 리다이렉트
 	}
 	
+	
+	@RequestMapping(value = "adminLogin.aws", method = RequestMethod.GET)
+	public String adminLogin() {
+		return "WEB-INF/member/adminLogin";
+	 
+	      // 요청한 페이지로 리다이렉트
+	}
+	
+	@RequestMapping(value = "adminLoginAction.aws", method = RequestMethod.POST)
+	public String adminLoginAction(@RequestParam("memberid") String memberid,
+			@RequestParam("memberpwd") String memberpwd, RedirectAttributes rttr, HttpSession session) {
+		MemberVo mv = memberService.adminLoginCheck(memberid);
+		String path = ""; // path 초기화
+
+		if (mv != null) { // 객체값이 널이 아니면 => mv 에 뭐라도 담았으면
+			String reservedPwd = mv.getMemberpwd(); // 저장된 비밀번호 가져오기
+			if (memberpwd.equals(reservedPwd)) { // 암호화 해줬던 암호랑 가져온 비밀번호랑 같은지 매칭시켜보고 맞으면
+				// if (bCryptPasswordEncoder.matches(memberpwd, reservedPwd))
+				rttr.addAttribute("midx", mv.getMidx());
+				rttr.addAttribute("memberId", mv.getMemberid());
+				rttr.addAttribute("memberName", mv.getMembername());
+				// ========= 이전 url 기억하기 ============
+				if (session.getAttribute("saveUrl") != null) {
+					path = "redirect:" + session.getAttribute("saveUrl").toString();
+					// logger.info("saveUrl 값 확인" + path); >> saveUrl 값
+					// 확인redirect:/member/memberList.aws
+
+				} else {
+					path = "redirect:/member/mainPage.aws";
+
+				}
+			} else { // null이면 ==> 잘못된 결과면 다시 로그인 페이지로 이동한다
+
+				rttr.addFlashAttribute("msg", "아이디/비밀번호를 확인해주세요"); // 한번 사용하고 없어질 세션. 값을 사용한 후에 지워버림
+				path = "redirect:/member/adminLogin.aws";
+
+			}
+
+		} else {
+
+			rttr.addFlashAttribute("msg", "해당하는 아이디가 없습니다");
+			path = "redirect:/member/adminLogin.aws";
+		}
+		return path; // path 값 리턴
+	}
+	
+
+	
 
 
 
