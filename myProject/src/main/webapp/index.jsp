@@ -16,6 +16,10 @@
 		<a href ="<%=request.getContextPath() %>/member/mainPage.aws">메인페이지</a>
 	</div>
 
+	<div>
+		<a href ="<%=request.getContextPath() %>/email/emailWrite.aws">이메일 보내기</a>
+	</div>
+
 
 </body>
 </html>

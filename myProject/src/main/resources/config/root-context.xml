@@ -45,6 +45,24 @@
 		<bean id="sqlSession" class = "org.mybatis.spring.SqlSessionTemplate">
 			<constructor-arg name = "sqlSessionFactory" ref = "sqlSessionFactory"/>
 		</bean>	
+		
+		<bean id="mailSender" class = "org.springframework.mail.javamail.JavaMailSenderImpl">
+			<property name="host" value = "smtp.gmail.com"/>	<!-- value 에는 회사에서 메일을 사용한다면 그 주소를 넣어줘야 하지만 ㅇ없으니 구글 메일주소로 사용할 거임 -->
+			<!-- 구글 주소 -->
+			<property name="port" value = "587"/>
+			<!-- 포트 번호 -->
+			<property name="username" value = "a01024705367@gmail.com"/>
+			<!-- 사용자 메일 주소 내꺼 넣기 -->
+			<property name="password" value = "yool apov ghaa zetq"/>
+			<!--  보안인증을 위해 비밀번호 등록 -->
+			<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
+			</props>
+			</property>
+		</bean>
 
 <!--  트렌젝션 사용할 빈 등록 -->
 		<bean id = "transactionManager" class = "org.springframework.jdbc.datasource.DataSourceTransactionManager">
