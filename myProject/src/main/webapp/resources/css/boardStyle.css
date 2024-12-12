@@ -89,10 +89,20 @@ table th, table td { padding: 5px 10px; }
 .detailContents .content { padding: 20px 0; }
 .detailContents .fileDown img { margin-right: 10px; }
 
-.commentContents form[name="frm"] { margin-bottom: 40px; }
+.commentContents {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers content horizontally */
+  justify-content: center; /* Centers content vertically */
+}
+
+.commentContents form[name="frm"] {  display: flex;
+  flex-direction: row; /* Align input and button side by side */
+  align-items: center; /* Vertically align input and button */
+  gap: 10px; /* Add spacing between input and button */ }
 .commentContents .commentWriter { border: 1px solid lightgray; display: inline-block; padding: 0 100px;}
-.commentContents input { width: 600px; height: 25px; float: left;}
-.commentContents .replyBtn { background-color: #c7b199; width: 188px; float: left; border: none; cursor: pointer;
+.commentContents input { width: 400px; height: 30px;}
+.commentContents .replyBtn { background-color: #c7b199; width: auto; border: none; cursor: pointer;
 	color: white; height: 27px; }
 	
 
@@ -119,6 +129,8 @@ table th, table td { padding: 5px 10px; }
     text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
 	
+
+
 	
 /* td .star {
     display: flex;

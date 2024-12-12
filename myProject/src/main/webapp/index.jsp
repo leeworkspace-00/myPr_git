@@ -19,6 +19,9 @@
 	<div>
 		<a href ="<%=request.getContextPath() %>/email/emailWrite.aws">이메일 보내기</a>
 	</div>
+	<div>
+		<a href ="<%=request.getContextPath() %>/admin/adminPage.aws">관리자페이지가기</a>
+	</div>
 
 
 </body>

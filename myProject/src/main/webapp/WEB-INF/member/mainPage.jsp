@@ -86,13 +86,13 @@ if (session.getAttribute("midx") == null) {
   <div><h3>CHAPTER</h3></div>
 
   <ul>
+  	<li><a href="<%=request.getContextPath() %>/board/introFee.aws">이용요금안내</a></li>
+  	<li><a href="<%=request.getContextPath() %>/board/reviewList.aws">리뷰목록</a></li>
+  	<li><a href="<%=request.getContextPath() %>/board/askList.aws">문의게시판</a></li>
+  	<li><a href="<%=request.getContextPath() %>/board/levelupWrite.aws">시터지원하러가기</a></li>
     <li><a href="<%=request.getContextPath() %>/board/reservationList.aws">예약목록</a></li>
-    <li><a href="<%=request.getContextPath() %>/board/askList.aws">문의게시판</a></li>
-    <li><a href="<%=request.getContextPath() %>/board/introFee.aws">요금안내</a></li>
-    <li><a href="<%=request.getContextPath() %>/board/reviewList.aws">후기게시판</a></li>
-    <li><a href="<%=request.getContextPath() %>/board/levelupWrite.aws">시터지원하러가기</a></li>
-	<li><a href="<%=request.getContextPath() %>/board/levelupList.aws">지원목록</a></li>
-	 </ul>
+    <li><a href="<%=request.getContextPath() %>/board/levelupList.aws">지원목록</a></li>
+  </ul>
     <!-- Bottom Links for Login/Signup or My Page/Logout -->
     <div class="bottom-links">
       <% if (isLoggedIn) { %>
